@@ -29,5 +29,6 @@ Abra `index.html` no navegador para testar.
 
 Abaixo está a representação do autômato finito utilizado para modelar a máquina de vendas:
 
-<img width="1366" height="768" alt="{DFB4753C-8B07-4568-A73D-917A6CD2B82C}" src="https://github.com/user-attachments/assets/56f2b8c8-9b85-4dee-b639-0d748f02d01f" />
+<img width="1366" height="720" alt="{69201446-1CB0-4DB5-9C0B-C9EA998602D8}" src="https://github.com/user-attachments/assets/54b26183-58eb-4f69-a5ae-8222ac107a2a" />
+
 
