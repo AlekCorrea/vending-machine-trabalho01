@@ -13,7 +13,7 @@ Interface web inspirada em uma máquina de arcade para o Trabalho 01 de Linguage
 ## Arquivos
 
 - `index.html` — interface
-- `style.css` — tema arcade
+- `style.css` — 
 - `script.js` — lógica da máquina e do autômato
 
 ## Testes
