@@ -170,5 +170,6 @@ O botão **"Reiniciar"** zera o autômato de volta ao estado inicial `0`.
 **No JFlap:**
 
 
-<img width="684" height="711" alt="{A7FFDB00-5C3A-40C7-8D9C-1AE428B7681B}" src="https://github.com/user-attachments/assets/9537ce0c-b39a-4459-85de-f05061c709bf" />
+<img width="679" height="718" alt="{59706459-A19E-4D95-B851-7B24E0F880DE}" src="https://github.com/user-attachments/assets/5d3860be-ec73-4940-bbbd-4a613aafd46e" />
+
 
