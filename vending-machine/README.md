@@ -13,7 +13,7 @@ Interface web inspirada em uma máquina de arcade para o Trabalho 01 de Linguage
 ## Arquivos
 
 - `index.html` — interface
-- `style.css` — tema arcade
+- `style.css` — 
 - `script.js` — lógica da máquina e do autômato
 
 ## Testes
@@ -24,3 +24,11 @@ Interface web inspirada em uma máquina de arcade para o Trabalho 01 de Linguage
 - 5 5 5 5 5 → 25¢ → não libera o produto
 
 Abra `index.html` no navegador para testar.
+
+## Autômato desenvolvido no JFLAP
+
+Abaixo está a representação do autômato finito utilizado para modelar a máquina de vendas:
+
+<img width="1366" height="720" alt="{69201446-1CB0-4DB5-9C0B-C9EA998602D8}" src="https://github.com/user-attachments/assets/54b26183-58eb-4f69-a5ae-8222ac107a2a" />
+
+
