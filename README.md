@@ -2,12 +2,12 @@
 
 Interface web inspirada em uma máquina de arcade, desenvolvida para o **Trabalho 01** da disciplina de Linguagens Formais e Autômatos. O projeto modela e implementa um **Autômato Finito Determinístico (AFD)** que simula o funcionamento de uma máquina de vendas.
 
-🔗 **Teste online:** `<coloque aqui o link do GitHub Pages>`
+🔗 **Teste online:** `https://alekcorrea.github.io/vending-machine-trabalho01/`
 
 ---
 ## 👥 Autores
 
-- `<Alessandra Corrêa>`
+- `Alessandra Corrêa`
 
 Disciplina: Linguagens Formais e Autômatos — Trabalho 01
 ---
@@ -141,7 +141,6 @@ O botão **"Reiniciar"** zera o autômato de volta ao estado inicial `0`.
 ├── index.html              # estrutura da interface (autômato + máquina)
 ├── style.css                # tema visual "arcade dark kawaii"
 ├── script.js                 # implementação do AFD e lógica da interface
-├── vending-machine.jff       # modelagem formal do autômato feita no JFlap
 └── README.md                 # este arquivo
 ```
 
@@ -163,12 +162,14 @@ O botão **"Reiniciar"** zera o autômato de volta ao estado inicial `0`.
 
 ## ▶️ Como testar
 
-**Online:** acesse `<coloque aqui o link do GitHub Pages>` — não é necessário instalar nada.
+**Online:** acesse `https://alekcorrea.github.io/vending-machine-trabalho01/` — não é necessário instalar nada.
 
 **Localmente:**
 1. Abra o arquivo `index.html` em qualquer navegador.
 
-**No JFlap:** abra o arquivo `vending-machine.jff` no [JFlap](http://www.jflap.org/) para visualizar/testar o autômato formal.
+**No JFlap:**
+<img width="684" height="711" alt="{A7FFDB00-5C3A-40C7-8D9C-1AE428B7681B}" src="https://github.com/user-attachments/assets/9537ce0c-b39a-4459-85de-f05061c709bf" />
+
 
 ---
 
