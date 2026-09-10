@@ -18,6 +18,12 @@ Interface web inspirada em uma máquina de arcade para o Trabalho 01 de Linguage
 
 ## Testes
 
+## Autômato desenvolvido no JFLAP
+
+Abaixo está a representação do autômato finito utilizado para modelar a máquina de vendas:
+
+![Autômato desenvolvido no JFLAP](jflap.png)
+
 - 5 5 5 5 5 5 → 30¢ → aceita
 - 25 5 → 30¢ → aceita
 - 10 10 10 → 30¢ → aceita
