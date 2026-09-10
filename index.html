@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vending Machine — Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stars"></div>
+
+  <main class="game">
+    <header class="hero">
+      <div class="title-wrap">
+        <div class="coin">🪙</div>
+        <h1>VENDING MACHINE</h1>
+        <div class="subtitle">AUTÔMATO FINITO • 30 CENTAVOS</div>
+      </div>
+    </header>
+
+    <div class="arcade-layout">
+
+      <!-- AUTÔMATO À ESQUERDA -->
+      <section class="panel automaton-panel">
+        <div class="panel-title blue-title">👾 AUTÔMATO DE ESTADOS</div>
+        <p class="panel-subtitle">Cada moeda provoca uma transição no autômato.</p>
+
+        <div class="automaton" id="automaton"></div>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="info-label">⚡ ÚLTIMA TRANSIÇÃO</div>
+            <div class="big-info" id="lastTransition">—</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">🎮 SEQUÊNCIA INSERIDA</div>
+            <div class="big-info small" id="sequence">—</div>
+            <div class="total" id="total">Valor total: 0 centavos</div>
+          </div>
+        </div>
+
+        <div class="history-box">
+          <div class="info-label">📜 HISTÓRICO DE TRANSIÇÕES</div>
+          <div id="history"><div class="empty">Nenhuma moeda inserida.</div></div>
+        </div>
+      </section>
+
+      <!-- MÁQUINA À DIREITA -->
+      <section class="panel machine-panel">
+        <div class="machine-title">⭐ ESCOLHA SEU PRODUTO ⭐</div>
+
+        <div class="products">
+          <button class="product" data-product="Refrigerante">
+            <span class="product-art">🥤</span>
+            <span class="product-name">REFRIGERANTE</span>
+            <span class="price">R$ 0,30</span>
+          </button>
+          <button class="product" data-product="Chocolate">
+            <span class="product-art">🍫</span>
+            <span class="product-name">CHOCOLATE</span>
+            <span class="price">R$ 0,30</span>
+          </button>
+          <button class="product" data-product="Biscoito">
+            <span class="product-art">🍪</span>
+            <span class="product-name">BISCOITO</span>
+            <span class="price">R$ 0,30</span>
+          </button>
+        </div>
+
+        <div class="machine-controls">
+          <div class="coin-area">
+            <div class="machine-label">✦ INSIRA AS MOEDAS</div>
+            <div class="coin-buttons">
+              <button class="coin-button c5" data-coin="5">5¢</button>
+              <button class="coin-button c10" data-coin="10">10¢</button>
+              <button class="coin-button c25" data-coin="25">25¢</button>
+            </div>
+          </div>
+
+          <div class="credit">
+            <span>CRÉDITO ATUAL</span>
+            <strong id="amount">R$ 0,00</strong>
+          </div>
+        </div>
+
+        <div class="message" id="message">✦ INSIRA MOEDAS PARA COMEÇAR ✦</div>
+
+        <div class="machine-actions">
+          <button id="takeProduct" class="take" disabled>✓ RETIRAR PRODUTO</button>
+          <button id="reset" class="reset">↻ REINICIAR</button>
+        </div>
+
+        <div class="dispenser">
+          <div class="dispenser-title">↓↓ RETIRE SEU PRODUTO AQUI ↓↓</div>
+          <div id="dispenserContent" class="dispenser-content">▰</div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <span>👾 LÓGICA HOJE, SOLUÇÕES AMANHÃ!</span>
+      <span>♥ ♥ ♡</span>
+      <span>AUTÔMATOS TORNAM IDEIAS REAIS</span>
+      <span>🪙 NÍVEL 1 • PRODUTO: 30¢</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
