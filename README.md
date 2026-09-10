@@ -1,4 +1,4 @@
-# 🕹️ Vending Machine — Arcade
+# 🕹️ Vending Machine
 
 Interface web inspirada em uma máquina de arcade, desenvolvida para o **Trabalho 01** da disciplina de Linguagens Formais e Autômatos. O projeto modela e implementa um **Autômato Finito Determinístico (AFD)** que simula o funcionamento de uma máquina de vendas.
 
