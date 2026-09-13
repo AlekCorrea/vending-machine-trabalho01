@@ -1,104 +1,89 @@
-const stateValues=[0,5,10,15,20,25,30];
-let current=0, selected=null, history=[], sequence=[];
+const PRICE = 30;
+let amount = 0, state = 0, history = [], selectedProduct = null;
 
-const automaton=document.getElementById("automaton");
-const amount=document.getElementById("amount");
-const message=document.getElementById("message");
-const stateBadge=document.getElementById("stateBadge");
-const lastTransition=document.getElementById("lastTransition");
-const sequenceEl=document.getElementById("sequence");
-const totalEl=document.getElementById("total");
-const historyEl=document.getElementById("history");
-const takeProduct=document.getElementById("takeProduct");
-const dispenserContent=document.getElementById("dispenserContent");
+const amountEl = document.getElementById("amount");
+const stateEl = document.getElementById("state");
+const messageEl = document.getElementById("message");
+const transitionEl = document.getElementById("transition");
+const transitionTextEl = document.getElementById("transitionText");
+const historyEl = document.getElementById("history");
+const buyButton = document.getElementById("buy");
+const productButtons = document.querySelectorAll(".product");
+const coinButtons = document.querySelectorAll(".coins button");
 
-function money(c){return `R$ ${(c/100).toFixed(2).replace(".",",")}`;}
-function nextState(value,coin){return Math.min(30,value+coin);}
-
-function drawAutomaton(){
-  automaton.innerHTML="";
-  stateValues.forEach((s,i)=>{
-    const wrap=document.createElement("div");
-    wrap.className="state-wrap";
-    const node=document.createElement("div");
-    node.className="state"+(s===current?" active":"")+(s===30?" final":"");
-    node.textContent=s===30?"30+":s;
-    if(s===30){
-      const label=document.createElement("div");
-      label.className="state-label";
-      label.textContent="ESTADO FINAL";
-      node.appendChild(label);
-    }
-    wrap.appendChild(node);
-    if(i<stateValues.length-1){
-      const arrow=document.createElement("div");
-      arrow.className="arrow";
-      arrow.textContent="→";
-      wrap.appendChild(arrow);
-    }
-    automaton.appendChild(wrap);
-  });
+function money(c){
+  return `R$ ${(c/100).toFixed(2).replace(".",",")}`;
 }
 
-function render(){
-  amount.textContent=money(current);
-  sequenceEl.textContent=sequence.length?sequence.join("  "):"—";
-  totalEl.textContent=`Valor total: ${current} centavos`;
-
-  if(current>=30){
-    message.textContent=selected?`✓ VALOR SUFICIENTE! ${selected.toUpperCase()} PRONTO.`:"✓ VALOR SUFICIENTE! ESCOLHA UM PRODUTO.";
-    message.style.borderColor="#25ff73";
-    message.style.color="#25ff73";
-  }else{
-    message.textContent=`✦ FALTAM ${30-current} CENTAVOS ✦`;
-    message.style.borderColor="#19c8ff";
-    message.style.color="#19c8ff";
-  }
-
-  takeProduct.disabled=!(current>=30 && selected);
-
-  historyEl.innerHTML=history.length
-    ? history.map((h,i)=>`<div class="history-item">${i+1}. (${h.from}) — <b>${h.coin}¢</b> → (${h.to})</div>`).join("")
-    : `<div class="empty">Nenhuma moeda inserida.</div>`;
-
-  document.querySelectorAll(".product").forEach(btn=>{
-    btn.classList.toggle("selected",btn.dataset.product===selected);
-  });
-  drawAutomaton();
+function stateName(v){
+  return v >= PRICE ? "q30" : `q${v}`;
 }
 
-document.querySelectorAll(".product").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    selected=btn.dataset.product;
-    render();
-  });
-});
+function statusMessage(){
+  if(amount < PRICE) return `Faltam ${money(PRICE - amount)} para liberar a escolha do produto.`;
+  if(!selectedProduct) return "Valor suficiente! Escolha um produto (moedas extras ficam em q30 → q30).";
+  return "Pronto para retirar o produto.";
+}
 
-document.querySelectorAll(".coin-button").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const coin=Number(btn.dataset.coin);
-    const from=current;
-    const to=nextState(current,coin);
-    current=to;
-    sequence.push(coin);
-    history.push({from,coin,to});
-    lastTransition.textContent=`(${from}) — ${coin}¢ → (${to>=30?"30+":to})`;
-    render();
-  });
-});
+function update(){
+  amountEl.textContent = money(amount);
+  stateEl.textContent = `Estado atual: ${stateName(state)}`;
+  const funded = amount >= PRICE;
+  productButtons.forEach(b => b.disabled = !funded);
+  buyButton.disabled = !funded || !selectedProduct;
+  messageEl.textContent = statusMessage();
+}
 
-takeProduct.addEventListener("click",()=>{
-  if(current<30 || !selected)return;
-  dispenserContent.textContent=selected==="Refrigerante"?"🥤":selected==="Chocolate"?"🍫":"🍪";
-  message.textContent=`★ ${selected.toUpperCase()} LIBERADO! ★`;
-  takeProduct.disabled=true;
-});
+function addHistory(t){
+  history.push(t);
+  historyEl.innerHTML = history.map(x => `<li>${x}</li>`).join("");
+}
 
-document.getElementById("reset").addEventListener("click",()=>{
-  current=0;selected=null;history=[];sequence=[];
-  lastTransition.textContent="—";
-  dispenserContent.textContent="▰";
-  render();
-});
+function selectProduct(btn){
+  if(btn.disabled) return;
+  selectedProduct = btn.dataset.product;
+  productButtons.forEach(b => b.classList.toggle("selected", b === btn));
+  update();
+}
 
-render();
+function insertCoin(coin){
+  const old = stateName(state);
+  amount += coin;
+  state = Math.min(amount, PRICE);
+  const next = stateName(state);
+  transitionEl.textContent = `${old} → ${next}`;
+  transitionTextEl.textContent = `Moeda inserida: ${coin}¢ | Valor acumulado: ${money(amount)}`;
+  addHistory(`${coin}¢: ${old} → ${next}`);
+  update();
+}
+
+function buy(){
+  if(amount < PRICE || !selectedProduct) return;
+  const change = amount - PRICE;
+  messageEl.textContent = change > 0
+    ? `${selectedProduct} liberado! Troco: ${money(change)}`
+    : `${selectedProduct} liberado! Sem troco.`;
+  coinButtons.forEach(b => b.disabled = true);
+  productButtons.forEach(b => b.disabled = true);
+  buyButton.disabled = true;
+}
+
+function reset(){
+  amount = 0;
+  state = 0;
+  history = [];
+  selectedProduct = null;
+  transitionEl.textContent = "q0";
+  transitionTextEl.textContent = "Nenhuma transição realizada.";
+  historyEl.innerHTML = "";
+  productButtons.forEach(b => { b.disabled = false; b.classList.remove("selected"); });
+  coinButtons.forEach(b => b.disabled = false);
+  update();
+}
+
+productButtons.forEach(b => b.addEventListener("click", () => selectProduct(b)));
+coinButtons.forEach(b => b.addEventListener("click", () => insertCoin(Number(b.dataset.coin))));
+buyButton.addEventListener("click", buy);
+document.getElementById("reset").addEventListener("click", reset);
+
+update();
