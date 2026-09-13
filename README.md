@@ -155,4 +155,4 @@ Para tornar visíveis as transições do autômato ("como ver as transições de
 
 **No JFLAP:** abra `Jflap/trabalho1.jff` para ver e simular o autômato formal diretamente na ferramenta.
 
-**Teste online:** abra o link `https://alekcorrea.github.io/vending-machine-trabalho01/`
+**Teste online:** acesse o link `https://alekcorrea.github.io/vending-machine-trabalho01/`
