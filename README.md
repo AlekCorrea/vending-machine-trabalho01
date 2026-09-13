@@ -2,6 +2,8 @@
 
 Interface web desenvolvida para o **Trabalho 01** da disciplina de Linguagens Formais e Autômatos. O projeto modela e implementa um **Autômato Finito Determinístico (AFD)** que simula o funcionamento de uma máquina de vendas, incluindo devolução de troco e escolha entre diferentes produtos.
 
+🔗 **Teste online:** `https://alekcorrea.github.io/vending-machine-trabalho01/`
+
 ---
 
 ## Autores
@@ -68,6 +70,10 @@ A função `δ: Q × Σ → Q` é **total e determinística** — para todo par 
 | **30** | 30  | 30  | 30  |
 
 Modelagem construída e validada na ferramenta **JFLAP** antes de ser implementada em código (veja `Jflap/trabalho1.jff`).
+
+![Diagrama do AFD](Jflap/trabalho1.jff.png)
+
+*Figura 1 — Autômato Finito Determinístico desenvolvido no JFLAP para a máquina de vendas.*
 
 ---
 
