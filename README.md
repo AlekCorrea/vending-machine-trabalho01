@@ -154,3 +154,5 @@ Para tornar visíveis as transições do autômato ("como ver as transições de
 **Localmente:** abra o arquivo `index.html` em qualquer navegador (não precisa de servidor nem instalação).
 
 **No JFLAP:** abra `Jflap/trabalho1.jff` para ver e simular o autômato formal diretamente na ferramenta.
+
+**Teste online:** abra o link `https://alekcorrea.github.io/vending-machine-trabalho01/`
